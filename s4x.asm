@@ -28,9 +28,9 @@
 ;  POSSIBILITY OF SUCH DAMAGE.
 ;
 ; -----------------------------------------------
-; SM4-128 block cipher in x86 assembly
+; SM4 block cipher in x86 assembly
 ;
-; size: 537
+; size: 502 bytes
 ;
 ; global calls use cdecl convention
 ;

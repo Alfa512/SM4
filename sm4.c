@@ -123,8 +123,6 @@ uint32_t CK(int i)
 }
   
 void sm4_setkey(sm4_ctx *c, const void *key, int enc) {
-    uint32_t *rk=c->rk;
-    uint32_t *k=(uint32_t*)key;
     uint32_t t, rk0, rk1, rk2, rk3; 
     int      i;    
     
@@ -153,6 +151,7 @@ void sm4_setkey(sm4_ctx *c, const void *key, int enc) {
       }
     }
 }
+
 
 void sm4_encrypt(sm4_ctx *c, void *buf)
 {
