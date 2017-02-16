@@ -137,26 +137,14 @@ void sm4_setkey(sm4_ctx *c, const void *key, int enc) {
     // xor FK values
     rk0 ^= 0xa3b1bac6; rk1 ^= 0x56aa3350;
     rk2 ^= 0x677d9197; rk3 ^= 0xb27022dc;
-
-    // setup 4 sub keys
-    for (i=0; i<4; i++) {
+    
+    // generate 32 sub keys
+    for (i=0; i<32; i++) {
       rk0 ^= T(rk1 ^ rk2 ^ rk3 ^ CK(i), 0);
+      rk[i] = rk0;
       XCHG(rk0, rk1);
       XCHG(rk1, rk2);
       XCHG(rk2, rk3);
-    }
-    // save sub keys
-    rk[0]=rk0; rk[1]=rk1;
-    rk[2]=rk2; rk[3]=rk3;
-    
-    // generate remaining 28
-    for (i=4; i<32; i++) 
-    {
-      rk[i] = rk[i-4] ^ 
-            T(rk[i-3] ^ 
-              rk[i-2] ^ 
-              rk[i-1] ^ 
-              CK(i), 0);
     }
     // reverse the order of keys if decrypting
     if (enc == SM4_DECRYPT) {

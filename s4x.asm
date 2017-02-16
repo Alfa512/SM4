@@ -116,37 +116,16 @@ _sm4_setkeyx:
     xor    rk2, 0x677d9197    
     xor    rk3, 0xb27022dc
     xor    ecx, ecx
-    
-    ; setup 4 sub keys
-sk_l0: 
+sk_l1:    
     call   CK
     clc
-    call   T_function
+    call   T_function 
     xor    rk0, eax
+    mov    eax, rk0
+    stosd                ; rk[i] = rk0
     xchg   rk0, rk1
     xchg   rk1, rk2
     xchg   rk2, rk3
-    inc    ecx
-    cmp    ecx, 4
-    jnz    sk_l0
-
-    xchg   eax, rk0
-    stosd
-    xchg   eax, rk1
-    stosd
-    xchg   eax, rk2
-    stosd
-    xchg   eax, rk3
-    stosd
-sk_l1:
-    call   CK    
-    mov    rk1, [edi- 4] ; rk[i-1]
-    mov    rk2, [edi- 8] ; rk[i-2]
-    mov    rk3, [edi-12] ; rk[i-3]
-    clc
-    call   T_function  
-    xor    eax, [edi-16] ; rk[i-4]
-    stosd                ; rk[i] = eax
     inc    ecx           ; i++
     cmp    ecx, 32
     jnz    sk_l1       
