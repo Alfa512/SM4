@@ -400,31 +400,31 @@ _sm4_setkey PROC					; COMDAT
 	push	ebp
 	mov	ebp, esp
 	push	ecx
-; Line 132
+; Line 130
 	mov	eax, DWORD PTR _key$[ebp]
 	push	ebx
-; Line 134
+; Line 132
 	mov	ebx, DWORD PTR [eax+8]
 	push	esi
 	mov	esi, DWORD PTR [eax]
 	push	edi
 	mov	edi, DWORD PTR [eax+4]
-; Line 135
+; Line 133
 	mov	eax, DWORD PTR [eax+12]
 	bswap	eax
 	bswap	esi
 	bswap	edi
 	bswap	ebx
-; Line 139
+; Line 137
 	xor	eax, -1301273892			; b27022dcH
 	xor	esi, -1548633402			; a3b1bac6H
 	xor	edi, 1453994832				; 56aa3350H
 	xor	ebx, 1736282519				; 677d9197H
-; Line 142
+; Line 140
 	and	DWORD PTR _i$[ebp], 0
 	mov	DWORD PTR _rk3$[ebp], eax
 $LL14@sm4_setkey:
-; Line 143
+; Line 141
 	push	0
 	push	DWORD PTR _i$[ebp]
 	call	_CK
@@ -435,7 +435,7 @@ $LL14@sm4_setkey:
 	push	eax
 	call	_T
 	xor	esi, eax
-; Line 144
+; Line 142
 	mov	eax, DWORD PTR _c$[ebp]
 	pop	ecx
 	pop	ecx
@@ -443,24 +443,24 @@ $LL14@sm4_setkey:
 	inc	DWORD PTR _i$[ebp]
 	cmp	DWORD PTR _i$[ebp], 32			; 00000020H
 	mov	DWORD PTR [eax+ecx*4], esi
-; Line 145
+; Line 143
 	mov	eax, esi
 	mov	esi, edi
-; Line 146
+; Line 144
 	mov	edi, ebx
-; Line 147
+; Line 145
 	mov	ebx, DWORD PTR _rk3$[ebp]
 	mov	DWORD PTR _rk3$[ebp], eax
 	jl	SHORT $LL14@sm4_setkey
-; Line 150
+; Line 148
 	cmp	DWORD PTR _enc$[ebp], 1
 	jne	SHORT $LN1@sm4_setkey
-; Line 151
+; Line 149
 	mov	esi, DWORD PTR _c$[ebp]
 	xor	edx, edx
 	lea	eax, DWORD PTR [esi+124]
 $LL3@sm4_setkey:
-; Line 152
+; Line 150
 	mov	edi, DWORD PTR [eax]
 	mov	ecx, DWORD PTR [esi+edx*4]
 	mov	DWORD PTR [esi+edx*4], edi
@@ -473,7 +473,7 @@ $LN1@sm4_setkey:
 	pop	edi
 	pop	esi
 	pop	ebx
-; Line 155
+; Line 153
 	leave
 	ret	0
 _sm4_setkey ENDP
@@ -488,19 +488,19 @@ _c$ = 8							; size = 4
 _i$ = 12						; size = 4
 _buf$ = 12						; size = 4
 _sm4_encrypt PROC					; COMDAT
-; Line 158
+; Line 157
 	push	ebp
 	mov	ebp, esp
 	push	ecx
 	push	ecx
 	push	ebx
 	push	esi
-; Line 163
+; Line 162
 	mov	esi, DWORD PTR _buf$[ebp]
 	mov	eax, DWORD PTR [esi]
-; Line 165
+; Line 164
 	mov	ebx, DWORD PTR [esi+8]
-; Line 168
+; Line 167
 	and	DWORD PTR _i$[ebp], 0
 	bswap	eax
 	mov	DWORD PTR _x0$[ebp], eax
@@ -515,7 +515,7 @@ _sm4_encrypt PROC					; COMDAT
 $LL10@sm4_encryp:
 	mov	eax, DWORD PTR _x3$[ebp]
 $LN3@sm4_encryp:
-; Line 169
+; Line 168
 	mov	edx, DWORD PTR _i$[ebp]
 	mov	ecx, DWORD PTR _c$[ebp]
 	mov	ecx, DWORD PTR [ecx+edx*4]
@@ -528,20 +528,20 @@ $LN3@sm4_encryp:
 	xor	eax, DWORD PTR _x0$[ebp]
 	inc	DWORD PTR _i$[ebp]
 	cmp	DWORD PTR _i$[ebp], 32			; 00000020H
-; Line 170
+; Line 169
 	mov	DWORD PTR _x0$[ebp], edi
 	pop	ecx
-; Line 171
+; Line 170
 	mov	edi, ebx
-; Line 172
+; Line 171
 	mov	ebx, DWORD PTR _x3$[ebp]
 	pop	ecx
 	mov	DWORD PTR _x3$[ebp], eax
 	jb	SHORT $LL10@sm4_encryp
-; Line 175
+; Line 174
 	bswap	eax
 	mov	DWORD PTR [esi], eax
-; Line 178
+; Line 177
 	mov	eax, DWORD PTR _x0$[ebp]
 	bswap	edi
 	bswap	ebx
@@ -552,7 +552,7 @@ $LN3@sm4_encryp:
 	mov	DWORD PTR [esi+12], eax
 	pop	esi
 	pop	ebx
-; Line 179
+; Line 178
 	leave
 	ret	0
 _sm4_encrypt ENDP

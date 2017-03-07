@@ -139,7 +139,7 @@ void sm4_setkey(sm4_ctx *c, const void *key, int enc) {
     // generate 32 sub keys
     for (i=0; i<32; i++) {
       rk0 ^= T(rk1 ^ rk2 ^ rk3 ^ CK(i), 0);
-      rk[i] = rk0;
+      c->rk[i] = rk0;
       XCHG(rk0, rk1);
       XCHG(rk1, rk2);
       XCHG(rk2, rk3);
@@ -147,7 +147,7 @@ void sm4_setkey(sm4_ctx *c, const void *key, int enc) {
     // reverse the order of keys if decrypting
     if (enc == SM4_DECRYPT) {
       for (i = 0; i < 16; i++) {
-        XCHG(rk[i], rk[31 - i]);
+        XCHG(c->rk[i], c->rk[31 - i]);
       }
     }
 }
